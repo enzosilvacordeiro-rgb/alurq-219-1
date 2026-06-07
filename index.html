@@ -3,36 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Agrinho | Alura</title>
+    <title>Portal Agrinho | Conexão Campo e Cidade</title>
     <style>
-        /* Estilos Globais */
+        /* Variáveis de Cores para facilitar */
+        :root {
+            --verde-escuro: #1b4332;
+            --verde-principal: #2d6a4f;
+            --verde-claro: #40916c;
+            --verde-destaque: #52b788;
+            --fundo-leve: #f4f9f4;
+            --texto-escuro: #2d3748;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #f0f7f4;
-            color: #2c3e50;
+            background-color: var(--fundo-leve);
+            color: var(--texto-escuro);
             line-height: 1.6;
         }
 
-        /* Cabeçalho */
+        /* Menu de Navegação Moderno */
         header {
-            background-color: #1e4620; /* Verde escuro simulando a natureza */
+            background-color: var(--verde-escuro);
             color: #fff;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .nav-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -40,9 +49,14 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #8dd979;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: var(--verde-destaque);
         }
 
         .nav-links {
@@ -51,103 +65,185 @@
         }
 
         .nav-links li {
-            margin-left: 20px;
+            margin-left: 25px;
         }
 
         .nav-links a {
-            color: #fff;
+            color: #e2e8f0;
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #8dd979;
+            color: var(--verde-destaque);
         }
 
-        /* Seção Principal (Hero) */
+        /* Banner Principal (Hero) */
         .hero {
-            height: 80vh;
+            height: 75vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1200') no-repeat center center/cover;
+            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(11, 29, 22, 0.9)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1200') no-repeat center center/cover;
             color: #fff;
             padding: 0 20px;
-            margin-top: 50px;
+            margin-top: 60px;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 800;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.4);
         }
 
         .hero h1 span {
-            color: #8dd979;
+            color: var(--verde-destaque);
         }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin-bottom: 30px;
+            color: #f7fafc;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
         }
 
         .btn {
             display: inline-block;
-            background-color: #8dd979;
-            color: #1e4620;
-            padding: 12px 30px;
+            background-color: var(--verde-destaque);
+            color: var(--verde-escuro);
+            padding: 14px 36px;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: transform 0.3s, background-color 0.3s;
+            font-weight: 700;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #76c063;
+            background-color: #74c69d;
             transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
 
-        /* Seção Sobre o Agrinho */
-        .content-section {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 0 20px;
+        /* Container de Seções */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
         }
 
-        .content-section h2 {
+        .section-title {
             font-size: 2.2rem;
-            color: #1e4620;
-            margin-bottom: 20px;
+            color: var(--verde-escuro);
             text-align: center;
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        .content-section p {
-            font-size: 1.1rem;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--verde-destaque);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Cartões Visuais (Grid) */
+        .grid-pilares {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--verde-claro);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            border-top-color: var(--verde-destaque);
+        }
+
+        .card h3 {
+            color: var(--verde-escuro);
             margin-bottom: 15px;
-            text-align: justify;
+            font-size: 1.4rem;
+        }
+
+        /* Tabela Estilizada */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--verde-principal);
+            color: #fff;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
         }
 
         /* Caixa de Destaque */
-        .highlight-box {
-            background-color: #e2f0d9;
-            border-left: 5px solid #1e4620;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 4px;
+        .banner-info {
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-escuro));
+            color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .banner-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--verde-destaque);
         }
 
         /* Rodapé */
         footer {
-            background-color: #1e4620;
-            color: #eee;
+            background-color: var(--verde-escuro);
+            color: #cbd5e0;
             text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            margin-top: 40px;
+            padding: 30px 20px;
+            font-size: 0.95rem;
+            margin-top: 60px;
+        }
+
+        footer p span {
+            color: var(--verde-destaque);
+            font-weight: bold;
         }
     </style>
 </head>
@@ -155,34 +251,84 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">Projeto Agrinho</div>
+            <div class="logo">Portal<span>Agrinho</span></div>
             <ul class="nav-links">
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre o Programa</a></li>
+                <li><a href="#pilares">Pilares</a></li>
+                <li><a href="#concurso">O Concurso</a></li>
             </ul>
         </div>
     </header>
 
     <section id="inicio" class="hero">
-        <h1>O Campo e a <span>Sustentabilidade</span></h1>
-        <p>Trabalho prático desenvolvido para a Alura, explorando a importância do Programa Agrinho na nossa educação.</p>
-        <a href="#sobre" class="btn">Conhecer o Projeto</a>
+        <h1>Educação, Campo & <span>Sustentabilidade</span></h1>
+        <p>Descubra como o Programa Agrinho transforma a educação conectando o conhecimento do colégio com a força do nosso campo.</p>
+        <a href="#pilares" class="btn">Explorar Projeto</a>
     </section>
 
-    <section id="sobre" class="content-section">
-        <h2>O que é o Programa Agrinho?</h2>
-        <p>O Agrinho é o maior programa de responsabilidade social do Sistema FAEP, inserido nas escolas públicas e particulares. Ele leva aos estudantes informações sobre cidadania, saúde, preservação ambiental e a importância da produção de alimentos no campo de forma sustentável.</p>
-        
-        <div class="highlight-box">
-            <h3>Reflexão do Trabalho:</h3>
-            <p>A conexão entre a tecnologia (que aprendemos na Alura) e o campo (trazido pelo Agrinho) mostra como o conhecimento pode transformar a nossa realidade, incentivando hábitos saudáveis e o respeito à natureza desde cedo.</p>
+    <section id="pilares" class="container">
+        <h2 class="section-title">Pilares do Programa</h2>
+        <div class="grid-pilares">
+            <div class="card">
+                <h3>🌱 Sustentabilidade</h3>
+                <p>Ensina práticas de preservação ambiental, a importância da conservação dos solos, proteção dos rios e o uso inteligente dos recursos naturais.</p>
+            </div>
+            <div class="card">
+                <h3>🍏 Saúde e Nutrição</h3>
+                <p>Incentiva a alimentação saudável e consciente, mostrando de onde vêm os alimentos e valorizando a produção da agricultura familiar.</p>
+            </div>
+            <div class="card">
+                <h3>🤝 Cidadania</h3>
+                <p>Estimula a ética, o trabalho em equipe e o desenvolvimento comunitário, preparando os alunos para serem cidadãos ativos e transformadores.</p>
+            </div>
         </div>
+    </section>
 
-        <p>Através de pesquisas, redações e desenhos, o programa nos desafia a pensar em soluções inteligentes para o futuro do nosso planeta, conectando a vida urbana e a vida rural.</p>
+    <section id="concurso" class="container" style="background-color: #fff; max-width: 100%; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
+            <h2 class="section-title">Categorias do Concurso Agrinho</h2>
+            <p style="text-align: center; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">O programa anualmente premia os melhores trabalhos desenvolvidos em ambiente escolar. Veja as principais modalidades de participação:</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Público-Alvo</th>
+                            <th>Objetivo Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Desenho</strong></td>
+                            <td>Educação Infantil e 1º Ano</td>
+                            <td>Expressar de forma artística e visual a percepção sobre o campo e a natureza.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Redação</strong></td>
+                            <td>Ensino Fundamental (2º ao 9º ano)</td>
+                            <td>Desenvolver a escrita criativa e crítica sobre temas rurais e ambientais.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Experiência Pedagógica</strong></td>
+                            <td>Professores</td>
+                            <td>Premiar projetos e metodologias criativas aplicadas em sala de aula.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="banner-info">
+            <h3>Tecnologia a Serviço do Conhecimento</h3>
+            <p>Este site foi desenvolvido utilizando HTML5 e CSS3 avançado como projeto prático para as aulas de Pensamento Computacional da Alura. A proposta une as ferramentas digitais de desenvolvimento web ao debate essencial promovido pelo Sistema FAEP/SENAR sobre o futuro do nosso ecossistema.</p>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 - Criado para o projeto Alura & Agrinho.</p>
+        <p>&copy; 2026 | Projeto Desenvolvido por Aluno da <span>Alura</span> para o Programa Agrinho.</p>
     </footer>
 
 </body>
